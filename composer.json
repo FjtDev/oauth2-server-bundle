@@ -19,14 +19,18 @@
     "require": {
         "php": ">=7.4",
         "bshaffer/oauth2-server-php": ">=1.0",
-        "bshaffer/oauth2-server-httpfoundation-bridge": "^1.5"
+        "bshaffer/oauth2-server-httpfoundation-bridge": "^1.5",
+        "sensio/framework-extra-bundle": "^6.2"
     },
     "require-dev": {
         "symfony/symfony": "^5.4",
         "doctrine/orm": "^2.5"
     },
     "autoload": {
-        "psr-0": { "OAuth2\\ServerBundle": "" }
+        "psr-0": { "OAuth2\\ServerBundle": "" },
+        "psr-4": {
+            "OAuth2\\ServerBundle\\": "src/"
+        }
     },
     "extra": {
         "symfony": {

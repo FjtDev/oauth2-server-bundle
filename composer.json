@@ -1,5 +1,5 @@
 {
-    "name": "bshaffer/oauth2-server-bundle",
+    "name": "fjtdev/oauth2-server-bundle",
     "type": "symfony-bundle",
     "description": "Symfony OAuth2ServerBundle",
     "keywords": ["oauth", "oauth2", "security"],
@@ -9,13 +9,17 @@
         {
             "name": "Brent Shaffer",
             "email": "bshafs@gmail.com"
+        },
+        {
+            "name": "Fjtdev",
+            "email": "dev@florajet.com"
         }
     ],
     "minimum-stability":"dev",
     "require": {
         "php": ">=7.4",
         "bshaffer/oauth2-server-php": ">=1.0",
-        "bshaffer/oauth2-server-httpfoundation-bridge": "^1.2"
+        "bshaffer/oauth2-server-httpfoundation-bridge": "^1.5"
     },
     "require-dev": {
         "symfony/symfony": "^5.4",

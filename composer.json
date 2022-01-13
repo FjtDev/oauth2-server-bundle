@@ -13,16 +13,22 @@
     ],
     "minimum-stability":"dev",
     "require": {
-        "php": ">=5.3",
+        "php": ">=7.4",
         "bshaffer/oauth2-server-php": ">=1.0",
         "bshaffer/oauth2-server-httpfoundation-bridge": "^1.2"
     },
     "require-dev": {
-        "symfony/symfony": "^2.8|^3",
-        "doctrine/orm": "~2.4,>=2.4.5"
+        "symfony/symfony": "^5.4",
+        "doctrine/orm": "^2.5"
     },
     "autoload": {
         "psr-0": { "OAuth2\\ServerBundle": "" }
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "^5.4"
+        }
     },
     "target-dir": "OAuth2/ServerBundle"
 }

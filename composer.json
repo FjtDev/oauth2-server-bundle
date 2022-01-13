@@ -37,6 +37,5 @@
             "allow-contrib": false,
             "require": "^5.4"
         }
-    },
-    "target-dir": "OAuth2/ServerBundle"
+    }
 }

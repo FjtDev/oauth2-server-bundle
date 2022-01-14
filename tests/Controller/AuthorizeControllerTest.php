@@ -45,7 +45,7 @@ class AuthorizeControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayNotHasKey('foo', $params['qs'], 'invalid included param');
         $this->assertArrayNotHasKey('redirect_uri', $params['qs'], 'optional excluded param');
 
-        $loader = new \Twig_Loader_Filesystem(__DIR__.'/../../Resources/views');
+        $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../../Resources/views');
         $twig = new \Twig_Environment($loader);
         $template = $twig->loadTemplate('Authorize/authorize.html.twig');
         $html = $template->render($params);

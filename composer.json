@@ -27,9 +27,8 @@
         "doctrine/orm": "^2.5"
     },
     "autoload": {
-        "psr-0": { "OAuth2\\ServerBundle": "" },
         "psr-4": {
-            "OAuth2\\ServerBundle\\": "src/"
+            "OAuth2\\ServerBundle\\OAuth2ServerBundle\\": "src/"
         }
     },
     "extra": {

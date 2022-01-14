@@ -15,7 +15,7 @@ class OAuth2ServerExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
     }
 

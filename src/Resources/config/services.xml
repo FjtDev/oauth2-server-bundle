@@ -23,8 +23,9 @@
         <parameter key="oauth2.server.config" type="collection" />
     </parameters>
     <services>
-        <defaults autowire="true" autoconfigure="true"/>
-        <prototype namespace="OAuth2\ServerBundle\" resource="../src/*" exclude="../src/{DependencyInjection,Entity,Tests,Kernel.php}"/>
+<!--        <defaults autowire="true" autoconfigure="true"/>-->
+<!--        <prototype namespace="OAuth2\" resource="../src/*" exclude="../src/{DependencyInjection,Entity,Tests,Kernel.php}"/>-->
+<!--        <prototype namespace="OAuth2\Controller\" resource="../src/Controller" tags="controller.service_arguments"/>-->
         <service id="oauth2.server" class="%oauth2.server.class%">
             <argument type="collection">
                 <argument key="client_credentials" type="service" id="oauth2.storage.client_credentials" />

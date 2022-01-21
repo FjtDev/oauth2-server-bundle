@@ -3,10 +3,10 @@ services:
         autowire: true
         autoconfigure: true
 
-    OAuth2\:
-        resource: '../../../src/*'
-        exclude: '../../../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+    OAuth2\ServerBundle\:
+        resource: '../../../src'
+        exclude: '../../../src/{DependencyInjection,Entity,Tests,Kernel.php,Command}'
 
-    OAuth2\Controller\:
-        resource: '../../../src/Controller/'
+    OAuth2\ServerBundle\Controller\:
+        resource: '../../../src/Controller'
         tags: [ 'controller.service_arguments' ]

@@ -7,6 +7,42 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TokenController extends AbstractController
 {
+    protected $server;
+    protected $clientCredentials;
+    protected $authorizationCode;
+    protected $refreshToken;
+    protected $userCredentials;
+    protected $request;
+    protected $response;
+
+    /**
+     * @param $server
+     * @param $clientCredentials
+     * @param $authorizationCode
+     * @param $refresh_token
+     * @param $userCredentials
+     * @param $request
+     * @param $response
+     */
+    public function __construct(
+        $server,
+        $clientCredentials,
+        $authorizationCode,
+        $refresh_token,
+        $userCredentials,
+        $request,
+        $response
+    )
+    {
+        $this->server = $server;
+        $this->clientCredentials = $clientCredentials;
+        $this->authorizationCode = $authorizationCode;
+        $this->refreshToken = $refresh_token;
+        $this->userCredentials = $userCredentials;
+        $this->request = $request;
+        $this->response = $response;
+    }
+
     /**
      * This is called by the client app once the client has obtained
      * an authorization code from the Authorize Controller (@see OAuth2\ServerBundle\Controller\AuthorizeController).
@@ -17,14 +53,12 @@ class TokenController extends AbstractController
      */
     public function tokenAction()
     {
-        $server = $this->get('oauth2.server');
-
         // Add Grant Types
-        $server->addGrantType($this->get('oauth2.grant_type.client_credentials'));
-        $server->addGrantType($this->get('oauth2.grant_type.authorization_code'));
-        $server->addGrantType($this->get('oauth2.grant_type.refresh_token'));
-        $server->addGrantType($this->get('oauth2.grant_type.user_credentials'));
+        $this->server->addGrantType($this->clientCredentials);
+        $this->server->addGrantType($this->authorizationCode);
+        $this->server->addGrantType($this->refreshToken);
+        $this->server->addGrantType($this->userCredentials);
 
-        return $server->handleTokenRequest($this->get('oauth2.request'), $this->get('oauth2.response'));
+        return $this->server->handleTokenRequest($this->request, $this->response);
     }
 }

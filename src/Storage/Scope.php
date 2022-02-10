@@ -2,20 +2,20 @@
 
 namespace OAuth2\ServerBundle\Storage;
 
+use Doctrine\ORM\EntityManagerInterface;
 use OAuth2\Storage\ScopeInterface;
 use OAuth2\ServerBundle\Manager\ScopeManagerInterface;
-use Doctrine\ORM\EntityManager;
 
 class Scope implements ScopeInterface
 {
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var ScopeManagerInterface
      */
-    private $sm;
+    private ScopeManagerInterface $sm;
 
-    public function __construct(EntityManager $entityManager, ScopeManagerInterface $scopeManager)
+    public function __construct(EntityManagerInterface $entityManager, ScopeManagerInterface $scopeManager)
     {
         $this->em = $entityManager;
         $this->sm = $scopeManager;

@@ -2,19 +2,19 @@
 
 namespace OAuth2\ServerBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use OAuth2\ServerBundle\Exception\ScopeNotFoundException;
 
 class ClientManager
 {
-    private $em;
+    private EntityManagerInterface $em;
 
     /**
      * @var ScopeManagerInterface
      */
-    private $sm;
+    private ScopeManagerInterface $sm;
 
-    public function __construct(EntityManager $entityManager, ScopeManagerInterface $scopeManager)
+    public function __construct(EntityManagerInterface $entityManager, ScopeManagerInterface $scopeManager)
     {
         $this->em = $entityManager;
         $this->sm = $scopeManager;

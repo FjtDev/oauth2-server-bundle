@@ -2,9 +2,9 @@
 
 namespace OAuth2\ServerBundle\User;
 
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-interface AdvancedOAuth2UserInterface extends AdvancedUserInterface
+interface AdvancedOAuth2UserInterface extends UserInterface
 {
     /**
      * Returns the scope granted to the user,

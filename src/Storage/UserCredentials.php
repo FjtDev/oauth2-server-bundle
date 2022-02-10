@@ -2,21 +2,21 @@
 
 namespace OAuth2\ServerBundle\Storage;
 
+use Doctrine\ORM\EntityManagerInterface;
 use OAuth2\Storage\UserCredentialsInterface;
-use Doctrine\ORM\EntityManager;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use OAuth2\ServerBundle\User\OAuth2UserInterface;
 use OAuth2\ServerBundle\User\AdvancedOAuth2UserInterface;
 
 class UserCredentials implements UserCredentialsInterface
 {
-    private $em;
-    private $up;
-    private $encoderFactory;
+    private EntityManagerInterface $em;
+    private UserProviderInterface $up;
+    private EncoderFactoryInterface $encoderFactory;
 
-    public function __construct(EntityManager $entityManager, UserProviderInterface $userProvider, EncoderFactoryInterface $encoderFactory)
+    public function __construct(EntityManagerInterface $entityManager, UserProviderInterface $userProvider, EncoderFactoryInterface $encoderFactory)
     {
         $this->em = $entityManager;
         $this->up = $userProvider;
@@ -56,7 +56,7 @@ class UserCredentials implements UserCredentialsInterface
         }
 
         // Do extra checks if implementing the AdvancedUserInterface
-        if ($user instanceof AdvancedUserInterface) {
+        if ($user instanceof UserInterface) {
             if ($user->isAccountNonExpired() === false) return false;
             if ($user->isAccountNonLocked() === false) return false;
             if ($user->isCredentialsNonExpired() === false) return false;

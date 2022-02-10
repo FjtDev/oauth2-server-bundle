@@ -2,13 +2,13 @@
 
 namespace OAuth2\ServerBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ScopeManager implements ScopeManagerInterface
 {
-    private $em;
+    private EntityManagerInterface $em;
 
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
     }

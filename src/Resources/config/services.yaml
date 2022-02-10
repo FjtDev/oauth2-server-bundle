@@ -21,3 +21,23 @@ services:
             - '@oauth2.grant_type.user_credentials'
             - '@oauth2.request'
             - '@oauth2.response'
+
+    oauth2.server:
+        class: OAuth2\Server
+        arguments:
+            - '@oauth2.storage.client_credentials'
+            - '@oauth2.storage.access_token'
+            - '@oauth2.storage.authorization_code'
+            - '@oauth2.storage.user_credentials'
+            - '@oauth2.storage.refresh_token'
+            - '@oauth2.storage.scope'
+            - '@oauth2.sto'
+
+    OAuth2\GrantType\ClientCredentials: '@oauth2.grant_type.client_credentials'
+    OAuth2\Server: '@oauth2.server'
+    OAuth2\GrantType\AuthorizationCode: '@oauth2.grant_type.authorization_code'
+    OAuth2\GrantType\RefreshToken: '@oauth2.grant_type.refresh_token'
+    OAuth2\GrantType\UserCredentials: '@oauth2.grant_type.user_credentials'
+    OAuth2\HttpFoundationBridge\Request: '@oauth2.request'
+    OAuth2\HttpFoundationBridge\Response: '@oauth2.response'
+    Doctrine\ORM\EntityManager: '@doctrine.orm.default_entity_manager'

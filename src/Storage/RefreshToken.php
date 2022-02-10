@@ -2,16 +2,16 @@
 
 namespace OAuth2\ServerBundle\Storage;
 
+use Doctrine\ORM\EntityManagerInterface;
 use OAuth2\Storage\RefreshTokenInterface;
-use Doctrine\ORM\EntityManager;
 
 class RefreshToken implements RefreshTokenInterface
 {
-    private $em;
+    private EntityManagerInterface $em;
 
-    public function __construct(EntityManager $EntityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->em = $EntityManager;
+        $this->em = $entityManager;
     }
 
     /**

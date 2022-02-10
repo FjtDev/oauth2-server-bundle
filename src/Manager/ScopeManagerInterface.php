@@ -2,11 +2,11 @@
 
 namespace OAuth2\ServerBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 interface ScopeManagerInterface
 {
-    public function __construct(EntityManager $entityManager);
+    public function __construct(EntityManagerInterface $entityManager);
 
     /**
      * Creates a new scope

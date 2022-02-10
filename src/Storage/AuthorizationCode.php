@@ -2,17 +2,17 @@
 
 namespace OAuth2\ServerBundle\Storage;
 
+use Doctrine\ORM\EntityManagerInterface;
 use OAuth2\Storage\AuthorizationCodeInterface;
-use Doctrine\ORM\EntityManager;
 use OAuth2\ServerBundle\Entity\Client;
 
 class AuthorizationCode implements AuthorizationCodeInterface
 {
-    private $em;
+    private EntityManagerInterface $em;
 
-    public function __construct(EntityManager $EntityManager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->em = $EntityManager;
+        $this->em = $entityManager;
     }
 
     /**

@@ -2,36 +2,43 @@
 
 namespace OAuth2\ServerBundle\Controller;
 
+use OAuth2\GrantType\AuthorizationCode;
+use OAuth2\GrantType\ClientCredentials;
+use OAuth2\GrantType\RefreshToken;
+use OAuth2\GrantType\UserCredentials;
+use OAuth2\HttpFoundationBridge\Request;
+use OAuth2\HttpFoundationBridge\Response;
+use OAuth2\Server;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TokenController extends AbstractController
 {
-    protected $server;
-    protected $clientCredentials;
-    protected $authorizationCode;
-    protected $refreshToken;
-    protected $userCredentials;
-    protected $request;
-    protected $response;
+    protected Server $server;
+    protected ClientCredentials $clientCredentials;
+    protected AuthorizationCode $authorizationCode;
+    protected RefreshToken $refreshToken;
+    protected UserCredentials $userCredentials;
+    protected Request $request;
+    protected Response $response;
 
     /**
-     * @param $server
-     * @param $clientCredentials
-     * @param $authorizationCode
-     * @param $refresh_token
-     * @param $userCredentials
-     * @param $request
-     * @param $response
+     * @param Server            $server
+     * @param ClientCredentials $clientCredentials
+     * @param AuthorizationCode $authorizationCode
+     * @param RefreshToken      $refresh_token
+     * @param UserCredentials   $userCredentials
+     * @param Request           $request
+     * @param Response          $response
      */
     public function __construct(
-        $server,
-        $clientCredentials,
-        $authorizationCode,
-        $refresh_token,
-        $userCredentials,
-        $request,
-        $response
+        Server $server,
+        ClientCredentials $clientCredentials,
+        AuthorizationCode $authorizationCode,
+        RefreshToken $refresh_token,
+        UserCredentials $userCredentials,
+        Request $request,
+        Response $response
     )
     {
         $this->server = $server;

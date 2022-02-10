@@ -2,6 +2,7 @@
 
 namespace OAuth2\ServerBundle\User;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Doctrine\ORM\EntityManager;
@@ -11,10 +12,10 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 class OAuth2UserProvider implements UserProviderInterface
 {
-    private $em;
-    private $encoderFactory;
+    private EntityManagerInterface $em;
+    private EncoderFactoryInterface $encoderFactory;
 
-    public function __construct(EntityManager $entityManager, EncoderFactoryInterface $encoderFactory)
+    public function __construct(EntityManagerInterface $entityManager, EncoderFactoryInterface $encoderFactory)
     {
         $this->em = $entityManager;
         $this->encoderFactory = $encoderFactory;

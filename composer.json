@@ -28,7 +28,8 @@
     },
     "autoload": {
         "psr-4": {
-            "OAuth2\\ServerBundle\\": "src/"
+            "OAuth2\\ServerBundle\\": "src/",
+            "OAuth2\\ServerBundle\\Controller\\": "src/Controller"
         }
     },
     "extra": {

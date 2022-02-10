@@ -11,28 +11,6 @@ services:
         resource: '../../../src/Controller'
         tags: [ 'controller.service_arguments' ]
 
-    OAuth2\ServerBundle\Controller\TokenController:
-        class: OAuth2\ServerBundle\Controller\TokenController
-        arguments:
-            - '@oauth2.server'
-            - '@oauth2.grant_type.client_credentials'
-            - '@oauth2.grant_type.authorization_code'
-            - '@oauth2.grant_type.refresh_token'
-            - '@oauth2.grant_type.user_credentials'
-            - '@oauth2.request'
-            - '@oauth2.response'
-
-    oauth2.server:
-        class: OAuth2\Server
-        arguments:
-            - '@oauth2.storage.client_credentials'
-            - '@oauth2.storage.access_token'
-            - '@oauth2.storage.authorization_code'
-            - '@oauth2.storage.user_credentials'
-            - '@oauth2.storage.refresh_token'
-            - '@oauth2.storage.scope'
-            - '@oauth2.sto'
-
     OAuth2\GrantType\ClientCredentials: '@oauth2.grant_type.client_credentials'
     OAuth2\Server: '@oauth2.server'
     OAuth2\GrantType\AuthorizationCode: '@oauth2.grant_type.authorization_code'

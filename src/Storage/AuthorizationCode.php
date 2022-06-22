@@ -87,7 +87,7 @@ class AuthorizationCode implements AuthorizationCodeInterface
      */
     public function setAuthorizationCode($code, $client_id, $user_id, $redirect_uri, $expires, $scope = null)
     {
-        $client = $this->em->getRepository('OAuth2ServerBundle:Client')->find($client_id);
+        $client = $this->em->getRepository(Client::class)->find($client_id);
 
         if (!$client) throw new \Exception('Unknown client identifier');
 

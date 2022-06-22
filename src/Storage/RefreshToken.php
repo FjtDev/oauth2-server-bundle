@@ -3,6 +3,7 @@
 namespace OAuth2\ServerBundle\Storage;
 
 use Doctrine\ORM\EntityManagerInterface;
+use OAuth2\ServerBundle\Entity\Client;
 use OAuth2\Storage\RefreshTokenInterface;
 
 class RefreshToken implements RefreshTokenInterface
@@ -84,7 +85,7 @@ class RefreshToken implements RefreshTokenInterface
     public function setRefreshToken($refresh_token, $client_id, $user_id, $expires, $scope = null)
     {
         // Get Client Entity
-        $client = $this->em->getRepository('OAuth2ServerBundle:Client')->find($client_id);
+        $client = $this->em->getRepository(Client::class)->find($client_id);
         if (!$client) {
             return null;
         }

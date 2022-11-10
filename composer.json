@@ -18,7 +18,7 @@
     "minimum-stability":"dev",
     "require": {
         "php": ">=7.4",
-        "bshaffer/oauth2-server-php": ">=1.0",
+        "bshaffer/oauth2-server-php": "1.12.1",
         "bshaffer/oauth2-server-httpfoundation-bridge": "^1.5",
         "sensio/framework-extra-bundle": "^6.2"
     },

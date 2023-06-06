@@ -3,19 +3,18 @@
 namespace OAuth2\ServerBundle\User;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Doctrine\ORM\EntityManager;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 class OAuth2UserProvider implements UserProviderInterface
 {
     private EntityManagerInterface $em;
-    private EncoderFactoryInterface $encoderFactory;
+    private PasswordHasherFactory $encoderFactory;
 
-    public function __construct(EntityManagerInterface $entityManager, EncoderFactoryInterface $encoderFactory)
+    public function __construct(EntityManagerInterface $entityManager, PasswordHasherFactory $encoderFactory)
     {
         $this->em = $entityManager;
         $this->encoderFactory = $encoderFactory;
@@ -107,7 +106,7 @@ class OAuth2UserProvider implements UserProviderInterface
 
         // Generate password
         $salt = $this->generateSalt();
-        $password = $this->encoderFactory->getEncoder($user)->encodePassword($password, $salt);
+        $password = $this->encoderFactory->getPasswordHasher($user)->hash($password);
 
         $user->setSalt($salt);
         $user->setPassword($password);
@@ -122,7 +121,7 @@ class OAuth2UserProvider implements UserProviderInterface
     /**
      * Creates a salt for password hashing
      *
-     * @return A salt
+     * @return string salt
      */
     protected function generateSalt()
     {

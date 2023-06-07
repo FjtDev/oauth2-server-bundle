@@ -23,6 +23,7 @@
         <parameter key="oauth2.server.config" type="collection" />
     </parameters>
     <services>
+        <defaults public="true" />
         <service id="oauth2.server" class="%oauth2.server.class%">
             <argument type="collection">
                 <argument key="client_credentials" type="service" id="oauth2.storage.client_credentials" />

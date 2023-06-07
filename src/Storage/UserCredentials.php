@@ -4,6 +4,7 @@ namespace OAuth2\ServerBundle\Storage;
 
 use Doctrine\ORM\EntityManagerInterface;
 use OAuth2\Storage\UserCredentialsInterface;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -14,13 +15,13 @@ class UserCredentials implements UserCredentialsInterface
 {
     private EntityManagerInterface $em;
     private UserProviderInterface $up;
-    private EncoderFactoryInterface $encoderFactory;
+//    private PasswordHasherFactoryInterface $encoderFactory;
 
-    public function __construct(EntityManagerInterface $entityManager, UserProviderInterface $userProvider, EncoderFactoryInterface $encoderFactory)
+    public function __construct(EntityManagerInterface $entityManager, UserProviderInterface $userProvider/*, PasswordHasherFactoryInterface $encoderFactory*/)
     {
         $this->em = $entityManager;
         $this->up = $userProvider;
-        $this->encoderFactory = $encoderFactory;
+//        $this->encoderFactory = $encoderFactory;
     }
 
     /**
@@ -64,7 +65,7 @@ class UserCredentials implements UserCredentialsInterface
         }
 
         // Check password
-        if ($this->encoderFactory->getEncoder($user)->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
+        if ($user->getPasswordHasher($user)->verify($user->getPassword(), $password, $user->getSalt())) {
             return true;
         }
 

@@ -3,11 +3,14 @@
 namespace OAuth2\ServerBundle\Entity;
 
 use OAuth2\ServerBundle\User\OAuth2UserInterface;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
+use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 /**
  * User
+ * @method string getUserIdentifier()
  */
-class User implements OAuth2UserInterface
+class User implements OAuth2UserInterface, PasswordHasherFactoryInterface
 {
     /**
      * @var string
@@ -167,5 +170,10 @@ class User implements OAuth2UserInterface
     public function eraseCredentials()
     {
         // We don't hold anything sensitivie, do nothing
+    }
+
+    public function getPasswordHasher($user) : PasswordHasherInterface
+    {
+        // TODO: Implement getPasswordHasher() method.
     }
 }

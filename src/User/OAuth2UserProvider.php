@@ -14,10 +14,10 @@ class OAuth2UserProvider implements UserProviderInterface
     private EntityManagerInterface $em;
     private PasswordHasherFactory $encoderFactory;
 
-    public function __construct(EntityManagerInterface $entityManager, PasswordHasherFactory $encoderFactory)
+    public function __construct(EntityManagerInterface $entityManager/*, PasswordHasherFactory $encoderFactory*/)
     {
         $this->em = $entityManager;
-        $this->encoderFactory = $encoderFactory;
+//        $this->encoderFactory = $encoderFactory;
     }
 
     /**
@@ -106,7 +106,8 @@ class OAuth2UserProvider implements UserProviderInterface
 
         // Generate password
         $salt = $this->generateSalt();
-        $password = $this->encoderFactory->getPasswordHasher($user)->hash($password);
+//        $password = $this->encoderFactory->getPasswordHasher($user)->hash($password);
+        $password = $user->getPasswordHasher($user)->hash($password);
 
         $user->setSalt($salt);
         $user->setPassword($password);

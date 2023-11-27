@@ -85,7 +85,7 @@ class AuthorizationCode implements AuthorizationCodeInterface
      *
      * @ingroup oauth2_section_4
      */
-    public function setAuthorizationCode($code, $client_id, $user_id, $redirect_uri, $expires, $scope = null)
+    public function setAuthorizationCode($code, $client_id, $user_id, $redirect_uri, $expires, $scope = null, $id_token = null, $code_challenge = null, $code_challenge_method = null)
     {
         $client = $this->em->getRepository(Client::class)->find($client_id);
 

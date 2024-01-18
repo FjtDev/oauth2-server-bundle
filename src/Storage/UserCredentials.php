@@ -5,6 +5,7 @@ namespace OAuth2\ServerBundle\Storage;
 use Doctrine\ORM\EntityManagerInterface;
 use OAuth2\Storage\UserCredentialsInterface;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -52,16 +53,8 @@ class UserCredentials implements UserCredentialsInterface
         // Load user by username
         try {
             $user = $this->up->loadUserByUsername($username);
-        } catch (\Symfony\Component\Security\Core\Exception\UsernameNotFoundException $e) {
+        } catch (UserNotFoundException $e) {
             return false;
-        }
-
-        // Do extra checks if implementing the AdvancedUserInterface
-        if ($user instanceof UserInterface) {
-            if ($user->isAccountNonExpired() === false) return false;
-            if ($user->isAccountNonLocked() === false) return false;
-            if ($user->isCredentialsNonExpired() === false) return false;
-            if ($user->isEnabled() === false) return false;
         }
 
         // Check password
@@ -89,7 +82,7 @@ class UserCredentials implements UserCredentialsInterface
         // Load user by username
         try {
             $user = $this->up->loadUserByUsername($username);
-        } catch (\Symfony\Component\Security\Core\Exception\UsernameNotFoundException $e) {
+        } catch (UserNotFoundException $e) {
             return false;
         }
 

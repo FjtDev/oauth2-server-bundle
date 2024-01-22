@@ -4,6 +4,7 @@ namespace OAuth2\ServerBundle\User;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
+use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -40,7 +41,7 @@ class OAuth2UserProvider implements UserProviderInterface
         $user = $this->em->getRepository('OAuth2ServerBundle:User')->find($username);
 
         if (!$user) {
-            throw new UsernameNotFoundException(sprintf('Username "%s" not found.', $username));
+            throw new UserNotFoundException(sprintf('Username "%s" not found.', $username));
         }
 
         return $user;

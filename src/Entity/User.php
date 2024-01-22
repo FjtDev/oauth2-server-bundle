@@ -2,6 +2,7 @@
 
 namespace OAuth2\ServerBundle\Entity;
 
+use OAuth2\ServerBundle\Security\CustomPasswordHasher;
 use OAuth2\ServerBundle\User\OAuth2UserInterface;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
@@ -174,6 +175,6 @@ class User implements OAuth2UserInterface, PasswordHasherFactoryInterface
 
     public function getPasswordHasher($user) : PasswordHasherInterface
     {
-        // TODO: Implement getPasswordHasher() method.
+        return new CustomPasswordHasher();
     }
 }

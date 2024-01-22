@@ -58,7 +58,7 @@ class UserCredentials implements UserCredentialsInterface
         }
 
         // Check password
-        if ($user->getPasswordHasher($user)->verify($user->getPassword(), $password, $user->getSalt())) {
+        if ($user->getPasswordHasher($user)->verify($user->getPassword(), $password)) {
             return true;
         }
 

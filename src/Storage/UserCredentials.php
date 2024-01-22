@@ -18,11 +18,13 @@ class UserCredentials implements UserCredentialsInterface
     private UserProviderInterface $up;
 //    private PasswordHasherFactoryInterface $encoderFactory;
 
-    public function __construct(EntityManagerInterface $entityManager, UserProviderInterface $userProvider/*, PasswordHasherFactoryInterface $encoderFactory*/)
+    private EncoderFactoryInterface $encoderFactory;
+
+    public function __construct(EntityManagerInterface $entityManager, UserProviderInterface $userProvider, EncoderFactoryInterface $encoderFactory)
     {
         $this->em = $entityManager;
         $this->up = $userProvider;
-//        $this->encoderFactory = $encoderFactory;
+        $this->encoderFactory = $encoderFactory;
     }
 
     /**
@@ -58,7 +60,7 @@ class UserCredentials implements UserCredentialsInterface
         }
 
         // Check password
-        if ($user->getPasswordHasher($user)->verify($user->getPassword(), $password, $user->getSalt())) {
+        if ($this->encoderFactory->getEncoder($user)->isPasswordValid($user->getPassword(), $password, $user->getSalt())) {
             return true;
         }
 

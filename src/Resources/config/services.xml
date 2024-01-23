@@ -52,7 +52,11 @@
         <service id="oauth2.storage.authorization_code" class="%oauth2.storage.authorization_code.class%">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>
-        <service id="oauth2.storage.user_credentials" class="%oauth2.storage.user_credentials.class%" autowire="true" />
+        <service id="oauth2.storage.user_credentials" class="%oauth2.storage.user_credentials.class%">
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="oauth2.user_provider"/>
+            <argument type="service" id="security.encoder_factory"/>
+        </service>
         <service id="oauth2.storage.access_token" class="%oauth2.storage.access_token.class%">
             <argument type="service" id="doctrine.orm.entity_manager"/>
         </service>

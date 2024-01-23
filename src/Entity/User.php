@@ -6,12 +6,13 @@ use OAuth2\ServerBundle\Security\CustomPasswordHasher;
 use OAuth2\ServerBundle\User\OAuth2UserInterface;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * User
  * @method string getUserIdentifier()
  */
-class User implements OAuth2UserInterface, PasswordHasherFactoryInterface
+class User implements OAuth2UserInterface, PasswordHasherFactoryInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @var string
@@ -79,7 +80,7 @@ class User implements OAuth2UserInterface, PasswordHasherFactoryInterface
      *
      * @return string
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -175,6 +176,6 @@ class User implements OAuth2UserInterface, PasswordHasherFactoryInterface
 
     public function getPasswordHasher($user) : PasswordHasherInterface
     {
-        return new CustomPasswordHasher();
+        // TODO: Implement getPasswordHasher() method.
     }
 }
